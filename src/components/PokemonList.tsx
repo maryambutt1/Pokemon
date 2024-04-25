@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchPokemonList } from "../features/pokemon/pokemonSlice";
+import { fetchPokemonList, pokemonListFailed, pokemonListLoading, pokemonListReceived } from "../features/pokemon/pokemonSlice";
 import {
   useGetPokemonListQuery,
   useGetPokemonByNameQuery,
@@ -17,24 +17,18 @@ interface Pokemon {
 const PokemonList: React.FC = () => {
   const dispatch = useDispatch();
   const { data: pokemonList, error, isLoading } = useGetPokemonListQuery();
-  // const [clickedPokemon, setClickedPokemon] = useState<string[]>([]);
   const status = isLoading ? "loading" : error ? "failed" : "succeeded";
 
   useEffect(() => {
-    dispatch(fetchPokemonList() as any);
+    dispatch(pokemonListLoading());
+    dispatch<any>(fetchPokemonList())
+      .then((response: any) => {
+        dispatch(pokemonListReceived(response));
+      })
+      .catch((err: any) => {
+        dispatch(pokemonListFailed(err.message));
+      });
   }, [dispatch]);
-
-  // const handlePokemonClick = (name: string) => {
-  //   setClickedPokemon(prevState => {
-  //     if (prevState.includes(name)) {
-  //       // If the clicked Pokemon is already in the array, remove it
-  //       return prevState.filter(item => item !== name);
-  //     } else {
-  //       // If the clicked Pokemon is not in the array, add it
-  //       return [...prevState, name];
-  //     }
-  //   });
-  // };
 
   if (!pokemonList || !pokemonList.results) {
     return <div>Error: Invalid data received</div>;
@@ -50,8 +44,14 @@ const PokemonList: React.FC = () => {
         <div>
           <ul className="pokemon-list">
             {pokemonListData?.map((pokemon: Pokemon, index: number) => (
-              <li key={index} className="pokemon-list-item">
-                <Link to={`/pokemon/${pokemon.name}`}>{pokemon.name}</Link>
+              <li key={index} >
+                <Link className="pokemon-list-item" to={`/pokemon/${pokemon.name}`}>
+                  <img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                    alt={pokemon.name}
+                  />
+                  <span>{pokemon.name}</span>
+                </Link>
               </li>
             ))}
           </ul>
