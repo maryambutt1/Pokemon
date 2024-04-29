@@ -4,8 +4,6 @@ import { pokemonApi } from './api/pokemonApi'; // Assuming you'll create this fi
 
 const store = configureStore({
   reducer: {
-    // Define your reducers here
-
     [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

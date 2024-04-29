@@ -1,4 +1,3 @@
-/* PokemonList.css */
 .pokemon-list {
   list-style: none;
   padding: 0;
@@ -14,54 +13,23 @@
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  text-decoration: none; /* Remove default underlines */
+  text-decoration: none; 
   color: #333;
-  border-bottom: 1px solid #ccc; /* Add a bottom border */
+  border-bottom: 1px solid #ccc; 
 }
 
 .pokemon-list-item:hover {
   background-color: #e0e0e0;
 }
 .pokemon-list-item img {
-  width: 50px; /* Adjust image width */
-  height: 50px; /* Adjust image height */
-  margin-right: 10px; /* Add space between image and text */
+  width: 50px;
+  height: 50px; 
+  margin-right: 10px; 
 }
 
-/* Additional styles for heading */
 h1 {
-  text-align: center; /* Center align heading */
-  color: #333; /* Set font color */
-}
-/* PokemonDetails.css */
-.pokemon-details {
- 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.pokemon-details-attributes {
-  
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-}
-
-/* Additional styles for heading */
-h1 {
-  text-align: center; /* Center align heading */
-  color: #333; /* Set font color */
-}
-.pokemon-image-container {
-  display: flex;
-  justify-content: center; /* Center the image horizontally */
-}
-
-.pokemon-image {
-  width: 200px; /* Set the desired width */
-  height: 200px; /* Set the desired height */
-  /* Add any other styles as needed */
+ text-align: center; 
+  color: white;
+  background-color: rgb(6, 6, 241); 
+  padding: 10px 0; 
 }

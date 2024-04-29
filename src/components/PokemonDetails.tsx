@@ -1,27 +1,38 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetPokemonByNameQuery } from "../api/pokemonApi";
-import "./PokemonList.css"; // Import the CSS file
+import "./PokemonDetails.css"; 
 
 const PokemonDetails: React.FC = () => {
-  const { pokemonName } = useParams<{ pokemonName: string }>(); // Get the pokemonName parameter from the URL
-  const { data: pokemonData } = useGetPokemonByNameQuery(pokemonName ?? ""); // Fetch details of the clicked Pokemon, handling potential undefined
-
+  const { pokemonName } = useParams<{ pokemonName: string }>(); 
+  const { data: pokemonData } = useGetPokemonByNameQuery(pokemonName ?? ""); 
   return (
     <div>
       <h1>Pokemon Details</h1>
-      <div className="pokemon-image-container"> {/* Apply container */}
+      <div className="pokemon-image-container">
         <img
-          className="pokemon-image" 
+          className="pokemon-image"
           src={pokemonData?.sprites?.front_shiny}
           alt={pokemonData?.species?.name}
         />
       </div>
       <div className="pokemon-details">
         <div className="pokemon-details-attributes">
-          <p>Height: {pokemonData?.height}</p>
-          <p>Weight: {pokemonData?.weight}</p>
-          <p>Abilities:</p>
+          <p>
+            <b>Name:</b>
+            <span className="detail-value">{pokemonData?.name}</span>
+          </p>
+          <p>
+            <b>Height:</b>
+            <span className="detail-value">{pokemonData?.height}</span>
+          </p>
+          <p>
+            <b>Weight:</b>
+            <span className="detail-value"> {pokemonData?.weight}</span>
+          </p>
+          <p>
+            <b>Abilities:</b>
+          </p>
           <ul>
             {pokemonData?.abilities?.map((ability: any, index: number) => (
               <li key={index}>

@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchPokemonList, pokemonListFailed, pokemonListLoading, pokemonListReceived } from "../features/pokemon/pokemonSlice";
+import React from "react";
 import {
   useGetPokemonListQuery,
-  useGetPokemonByNameQuery,
 } from "../api/pokemonApi";
-import PokemonDetails from "./PokemonDetails";
 import "./PokemonList.css";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Pokemon {
   name: string;
@@ -15,22 +11,14 @@ interface Pokemon {
 }
 
 const PokemonList: React.FC = () => {
-  const dispatch = useDispatch();
   const { data: pokemonList, error, isLoading } = useGetPokemonListQuery();
   const status = isLoading ? "loading" : error ? "failed" : "succeeded";
 
-  useEffect(() => {
-    dispatch(pokemonListLoading());
-    dispatch<any>(fetchPokemonList())
-      .then((response: any) => {
-        dispatch(pokemonListReceived(response));
-      })
-      .catch((err: any) => {
-        dispatch(pokemonListFailed(err.message));
-      });
-  }, [dispatch]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  if (!pokemonList || !pokemonList.results) {
+  if (error || !pokemonList || !pokemonList.results) {
     return <div>Error: Invalid data received</div>;
   }
 

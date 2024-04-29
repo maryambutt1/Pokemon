@@ -1,3 +1,55 @@
+# Pokémon App
+
+Welcome to the Pokémon Finder App! This React application allows you to browse a list of Pokémon fetched from a provided API and view details for each Pokémon.
+
+## Installation
+
+To get started with the Pokémon App, follow these steps:
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone <https://github.com/maryambutt1/Pokemon.git>
+
+2.Navigate to the project directory:
+cd my-pokemon-app
+
+3.Install dependencies using npm:
+npm install
+
+Usage
+Once you have installed the dependencies, you can start the development server and view the application in your browser:
+npm start
+
+This command will launch the app in development mode. Open http://localhost:3000 in your browser to view it.
+
+Features
+1.Browse a list of Pokémon fetched from the Pokémon API.
+2.Click on a Pokémon to view detailed information, including height, weight, and abilities.
+3.Persistently store the Pokémon list for improved performance.
+
+
+Technologies Used
+React: JavaScript library for building user interfaces.
+Redux Toolkit: State management library for React applications.
+RTK Query: Data fetching and caching library for Redux Toolkit.
+React Router: Routing library for React applications.
+Create React App: Toolkit for building React applications with zero configuration.
+
+
+Contributing:
+If you would like to contribute code to the project, please follow these steps:
+
+1.Fork the repository on GitHub.
+2.Create a new branch for your feature or bug fix.
+3.Make your changes and commit them with descriptive commit messages.
+4.Push your changes to your forked repository.
+5.Submit a pull request to the main repository's main branch.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
