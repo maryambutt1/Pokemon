@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  useGetPokemonListQuery,
-} from "../api/pokemonApi";
+import { useGetPokemonListQuery } from "../api/pokemonApi";
 import "./PokemonList.css";
 import { Link } from "react-router-dom";
 
@@ -27,15 +25,19 @@ const PokemonList: React.FC = () => {
   return (
     <div>
       <h1>Pokémon List</h1>
-      {status === "loading" && <div>Loading...</div>}
       {status === "succeeded" && (
         <div>
           <ul className="pokemon-list">
             {pokemonListData?.map((pokemon: Pokemon, index: number) => (
-              <li key={index} >
-                <Link className="pokemon-list-item" to={`/pokemon/${pokemon.name}`}>
+              <li key={index}>
+                <Link
+                  className="pokemon-list-item"
+                  to={`/pokemon/${pokemon.name}`}
+                >
                   <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                      index + 1
+                    }.png`}
                     alt={pokemon.name}
                   />
                   <span>{pokemon.name}</span>

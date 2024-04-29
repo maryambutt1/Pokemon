@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetPokemonByNameQuery } from "../api/pokemonApi";
-import "./PokemonDetails.css"; 
+import "./PokemonDetails.css";
 
 const PokemonDetails: React.FC = () => {
-  const { pokemonName } = useParams<{ pokemonName: string }>(); 
-  const { data: pokemonData } = useGetPokemonByNameQuery(pokemonName ?? ""); 
+  const { pokemonName } = useParams<{ pokemonName: string }>();
+  const { data: pokemonData } = useGetPokemonByNameQuery(pokemonName ?? "");
   return (
     <div>
       <h1>Pokemon Details</h1>
@@ -34,7 +34,7 @@ const PokemonDetails: React.FC = () => {
             <b>Abilities:</b>
           </p>
           <ul>
-            {pokemonData?.abilities?.map((ability: any, index: number) => (
+            {pokemonData?.abilities?.map((ability: PokemonAbility, index: number) => (
               <li key={index}>
                 {ability.ability.name} {ability.is_hidden ? "(Hidden)" : ""}
               </li>
