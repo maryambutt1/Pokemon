@@ -1,52 +1,46 @@
-import React from "react";
-import { useGetPokemonListQuery } from "../api/pokemonApi";
-import "./PokemonList.css";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-interface Pokemon {
-  name: string;
-  url: string;
-}
+import './PokemonList.css'
 
 const PokemonList: React.FC = () => {
-  const { data: pokemonList, error, isLoading } = useGetPokemonListQuery();
-  const status = isLoading ? "loading" : error ? "failed" : "succeeded";
+  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error || !pokemonList || !pokemonList.results) {
-    return <div>Error: Invalid data received</div>;
-  }
-
-  const pokemonListData = pokemonList.results;
+  useEffect(() => {
+    fetch('http://localhost:5000/api/pokemon/fetch')
+      .then(response => response.json())
+      .then(data => {
+        // Ensure data is an array of Pokemon objects
+        if (Array.isArray(data)) {
+          // Update the state with the fetched Pokémon data
+          setPokemonList(data);
+        } else {
+          console.error("Data received is not an array:", data);
+        }
+      })
+      .catch(error => console.error(error));
+  }, []);
 
   return (
     <div>
       <h1>Pokémon List</h1>
-      {status === "succeeded" && (
-        <div>
-          <ul className="pokemon-list">
-            {pokemonListData?.map((pokemon: Pokemon, index: number) => (
-              <li key={index}>
-                <Link
-                  className="pokemon-list-item"
-                  to={`/pokemon/${pokemon.name}`}
-                >
-                  <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                      index + 1
-                    }.png`}
-                    alt={pokemon.name}
-                  />
-                  <span>{pokemon.name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div>
+        <ul className="pokemon-list">
+          {pokemonList.map((pokemon: Pokemon, index: number) => (
+            <li key={index}>
+              <Link
+                className="pokemon-list-item"
+                to={`/pokemon/${pokemon.name}`}
+              >
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                  alt={pokemon.name}
+                />
+                <span>{pokemon.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
