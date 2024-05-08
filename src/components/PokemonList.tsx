@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './PokemonList.css'
+import "./PokemonList.css";
 
 const PokemonList: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/pokemon/fetch')
-      .then(response => response.json())
-      .then(data => {
+    fetch("http://localhost:5000/api/pokemon/fetch")
+      .then((response) => response.json())
+      .then((data) => {
         // Ensure data is an array of Pokemon objects
         if (Array.isArray(data)) {
           // Update the state with the fetched Pokémon data
@@ -17,7 +17,7 @@ const PokemonList: React.FC = () => {
           console.error("Data received is not an array:", data);
         }
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }, []);
 
   return (
@@ -32,7 +32,9 @@ const PokemonList: React.FC = () => {
                 to={`/pokemon/${pokemon.name}`}
               >
                 <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                    index + 1
+                  }.png`}
                   alt={pokemon.name}
                 />
                 <span>{pokemon.name}</span>

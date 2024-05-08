@@ -7,17 +7,33 @@ const PokemonDetails: React.FC = () => {
   const [pokemonDetails, setPokemonDetails] = useState<any>(null);
 
   useEffect(() => {
-      fetch(`http://localhost:5000/api/pokemon/${pokemonName}`)
-          .then(response => response.json())
-          .then(data => {
-              setPokemonDetails(data);
-          })
-          .catch(error => console.error(error));
+    fetch(`http://localhost:5000/api/pokemon/${pokemonName}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemonDetails(data);
+      })
+      .catch((error) => console.error(error));
   }, [pokemonName]);
-console.log("pokemon details",pokemonDetails)
+
+  const renderAbilities = () => {
+    if (!pokemonDetails || !pokemonDetails.abilities) return null;
+    return (
+      <div>
+        <b>Abilities:</b>
+        <ul>{pokemonDetails.abilities.map(renderAbility)}</ul>
+      </div>
+    );
+  };
+  const renderAbility = (ability: PokemonAbility, index: number) => (
+    <li key={index}>
+      {ability.ability.name} {ability.is_hidden ? "(Hidden)" : ""}
+    </li>
+  );
+
   if (!pokemonDetails) {
-      return <div>Loading...</div>;
+    return <div>Loading...</div>;
   }
+
   return (
     <div>
       <h1>Pokemon Details</h1>
@@ -36,7 +52,9 @@ console.log("pokemon details",pokemonDetails)
           </p>
           <p>
             <b>Base Experience:</b>
-            <span className="detail-value">{pokemonDetails?.base_experience}</span>
+            <span className="detail-value">
+              {pokemonDetails?.base_experience}
+            </span>
           </p>
           <p>
             <b>Height:</b>
@@ -46,16 +64,7 @@ console.log("pokemon details",pokemonDetails)
             <b>Weight:</b>
             <span className="detail-value"> {pokemonDetails?.weight}</span>
           </p>
-          <p>
-            <b>Abilities:</b>
-          </p>
-          <ul>
-            {pokemonDetails?.abilities?.map((ability: PokemonAbility, index: number) => (
-              <li key={index}>
-                {ability.ability.name} {ability.is_hidden ? "(Hidden)" : ""}
-              </li>
-            ))}
-          </ul>
+          {renderAbilities()}
         </div>
       </div>
     </div>

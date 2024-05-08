@@ -19,7 +19,9 @@
     "start": "REACT_BASE_API_URL=https://pokeapi.co/api/v2/ react-scripts start",
     "build": "react-scripts build",
     "test": "jest --watch",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --report-unused-disable-directives",
+    "lint:fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
     "extends": [

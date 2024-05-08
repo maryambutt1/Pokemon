@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PokemonList from "./components/PokemonList"; // Import your PokemonList component
-import PokemonDetails from "./components/PokemonDetails"; // Import the PokemonDetails component
-import store from "./store"; // Import your Redux store
+import PokemonList from "./components/PokemonList";
+import PokemonDetails from "./components/PokemonDetails";
+import ComparePokemon from "./components/ComparePokemon";
+import store from "./store";
 import { Provider } from "react-redux";
 import "./App.css";
 
@@ -13,6 +14,7 @@ const App = () => {
         <div>
           <Routes>
             <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+            <Route path="/compare" element={<ComparePokemon />} />
             <Route path="/" element={<PokemonList />} />
           </Routes>
         </div>

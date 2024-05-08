@@ -1,0 +1,36 @@
+.compare-pokemon-container {
+  text-align: center;
+}
+
+.dropdowns-container {
+  margin-bottom: 20px;
+}
+
+.pokemon-dropdown {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.pokemon-comparison {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pokemon-comparison-item {
+  width: 45%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.pokemon-image {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.pokemon-details {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
