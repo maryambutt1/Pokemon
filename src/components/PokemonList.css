@@ -34,3 +34,26 @@ h1 {
   background-color: rgb(6, 6, 241);
   padding: 10px 0;
 }
+.pagination {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #2439f5;
+  color: white;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.pagination .next-btn {
+  width: 7%;
+}
+
+.pagination span {
+  margin: 0 15px;
+}
