@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ComparePokemon.css";
+import "../styles/ComparePokemon.css";
 
 const usePokemonDetails = (selectedPokemon: string | null) => {
   const [pokemonDetails, setPokemonDetails] = useState<any>(null);

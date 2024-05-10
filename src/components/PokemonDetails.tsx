@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./PokemonDetails.css";
+import "../styles/PokemonDetails.css";
 
 const PokemonDetails: React.FC = () => {
   const { pokemonName } = useParams<{ pokemonName: string }>();
